@@ -1,0 +1,13 @@
+
+ <%= form_tag "hi", method: :post , data: { turbo: false } do %> 
+
+  <div>
+    <%= label_tag :name , "Your name:", style: "margin-left:5em;" %>
+    <%= text_field_tag :name %>
+  </div>
+  <div>
+    <%= submit_tag "Send" , style: "margin-left:15em;margin-top:2em"%>
+  </div>
+
+<%end%>
+
