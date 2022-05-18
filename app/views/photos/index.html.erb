@@ -1,0 +1,18 @@
+
+Photos:
+
+<% @all.each do |element| %>
+
+  <p>
+    Title: <%= element.title %>
+  </p>
+
+  <p>
+    <%= image_tag element.image_url %>
+  </p>
+
+  <p>
+    <%= link_to "See more!", element %>
+  </p>
+
+<%end%>

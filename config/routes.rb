@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  resources :tweets
+  resources :photos
+  
+  # get "photos/index"
+
   get "about/display"
 
   root to: "main#hello"
