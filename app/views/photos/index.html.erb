@@ -4,6 +4,10 @@ Photos:
 <% @all.each do |element| %>
 
   <p>
+    ID: <%= element.id %>
+  </p>
+
+  <p>
     Title: <%= element.title %>
   </p>
 
@@ -13,6 +17,8 @@ Photos:
 
   <p>
     <%= link_to "See more!", element %>
+    <%= link_to "Edit", "/photos/#{element.id}/edit" %>
+    <%= link_to "Delete", "/photos/#{element.id}", data: { "turbo-method": :delete , turbo_confirm: 'Are you sure?'} %>
   </p>
 
 <%end%>

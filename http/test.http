@@ -1,0 +1,9 @@
+POST http://localhost:3000/photos HTTP/1.1
+Content-Type: application/json
+
+{
+  "photo":{
+    "title": "minion last",
+    "image_url": "https://www.cleverfiles.com/howto/wp-content/uploads/2018/03/minion.jpg"
+  }
+}

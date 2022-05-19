@@ -6,3 +6,8 @@
 <p>
   <%= image_tag @my_photo.image_url %>
 </p>
+
+  <p>
+    <%= link_to "Edit", "/photos/#{@my_photo.id}/edit" %>
+    <%= link_to "Delete", "/photos/#{@my_photo.id}", data: { "turbo-method": :delete , turbo_confirm: 'Are you sure?'} %>
+  </p>

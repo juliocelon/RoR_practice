@@ -2,8 +2,8 @@ Rails.application.routes.draw do
 
   resources :tweets
   resources :photos
-  
-  # get "photos/index"
+
+  get "test/", to: "photos#test"
 
   get "about/display"
 
