@@ -1,5 +1,6 @@
 class PhotosController < ApplicationController
   skip_before_action :verify_authenticity_token
+  before_action :set_photo , only: [:show, :update, :destroy]
 
   def test
     # render "test1"
@@ -13,11 +14,12 @@ class PhotosController < ApplicationController
   end
 
   def show
-    @my_photo = Photo.find(params[:id])
+    # Assigned on before_action :set_photo: 
+    # @photo = Photo.find(params[:id]) 
 
     respond_to do | format |
       format.html { render :show }
-      format.json { render json: @my_photo }
+      format.json { render json: @photo }
     end
 
   end
@@ -59,17 +61,19 @@ class PhotosController < ApplicationController
     # photo.image_url = params[:photo][:image_url]
     # photo.save
 
-    photo = Photo.find(params[:id])
-    photo.update(photo_filtered_params)
+    # Assigned on before_action :set_photo :
+    # @photo = Photo.find(params[:id]) 
 
-    redirect_to photo
+    @photo.update(photo_filtered_params)
+
+    redirect_to @photo
   end
 
   def destroy
-    photo = Photo.find(params[:id])
-    photo.destroy
+    # Assigned on before_action :set_photo: 
+    # @photo = Photo.find(params[:id])
+    @photo.destroy
     
-
     respond_to do | format |
       format.html { redirect_to "/photos"}
       format.json { head 200 }
@@ -82,6 +86,10 @@ class PhotosController < ApplicationController
 
   def photo_filtered_params
     params.require(:photo).permit(:title, :image_url)
+  end
+
+  def set_photo
+    @photo = Photo.find(params[:id])
   end
 
 end

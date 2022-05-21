@@ -1,13 +1,13 @@
 
 <p>
-  <%= @my_photo.title %>
+  <%= @photo.title %>
 </p>
 
 <p>
-  <%= image_tag @my_photo.image_url %>
+  <%= image_tag @photo.image_url %>
 </p>
 
   <p>
-    <%= link_to "Edit", "/photos/#{@my_photo.id}/edit" %>
-    <%= link_to "Delete", "/photos/#{@my_photo.id}", data: { "turbo-method": :delete , turbo_confirm: 'Are you sure?'} %>
+    <%= link_to "Edit", "/photos/#{@photo.id}/edit" %>
+    <%= link_to "Delete", "/photos/#{@photo.id}", data: { "turbo-method": :delete , turbo_confirm: 'Are you sure?'} %>
   </p>
