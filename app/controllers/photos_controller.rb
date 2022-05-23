@@ -1,4 +1,5 @@
 class PhotosController < ApplicationController
+  include Geolocalizable
   skip_before_action :verify_authenticity_token
   before_action :set_photo , only: [:show, :update, :destroy]
 
@@ -25,6 +26,8 @@ class PhotosController < ApplicationController
   end
 
   def new
+    session[:attempts] = session[:attempts] ? session[:attempts] +1 : 1
+    # session[:attempts] = session[:attempts] + 1
   end
 
   def create
@@ -42,11 +45,16 @@ class PhotosController < ApplicationController
     # end
 
     @photo = Photo.new(photo_filtered_params)
-    @photo.save
 
     respond_to do | format |
-      format.html { redirect_to @photo}
-      format.json { render json: @photo }
+      if @photo.save
+        format.html { redirect_to @photo}
+        format.json { render json: @photo }
+      else
+        format.html { 
+          redirect_back fallback_location: photos_path,  
+          notice: "Error : #{@photo.errors.full_messages.to_sentence}"}
+      end
     end
 
   end
@@ -72,14 +80,21 @@ class PhotosController < ApplicationController
   def destroy
     # Assigned on before_action :set_photo: 
     # @photo = Photo.find(params[:id])
+
     @photo.destroy
     
-    respond_to do | format |
-      format.html { redirect_to "/photos"}
-      format.json { head 200 }
-      # format.json { head :ok }
-      # format.json { head :no_content }
-    end
+    puts "DESTRUIIII"*200
+
+    puts "REDIRECT TO:"
+    puts photos_path
+    # byebug
+    redirect_to photos_url
+    # respond_to do | format |
+    #   format.html { redirect_to photos_path }
+    #   # format.json { head 200 }
+    #   # format.json { head :ok }
+    #   # format.json { head :no_content }
+    # end
   end
 
   private

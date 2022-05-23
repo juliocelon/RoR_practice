@@ -1,4 +1,4 @@
-
+Show details
 <p>
   <%= @photo.title %>
 </p>
@@ -8,6 +8,6 @@
 </p>
 
   <p>
-    <%= link_to "Edit", "/photos/#{@photo.id}/edit" %>
-    <%= link_to "Delete", "/photos/#{@photo.id}", data: { "turbo-method": :delete , turbo_confirm: 'Are you sure?'} %>
+    <%= link_to "Edit", edit_photo_path(@photo.id) %>
+    <%= link_to "Delete", photo_path(@photo.id),  data: { "turbo-method": :delete }  %>
   </p>

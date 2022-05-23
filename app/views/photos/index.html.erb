@@ -17,8 +17,8 @@ Photos:
 
   <p>
     <%= link_to "See more!", element %>
-    <%= link_to "Edit", "/photos/#{element.id}/edit" %>
-    <%= link_to "Delete", "/photos/#{element.id}", data: { "turbo-method": :delete , turbo_confirm: 'Are you sure?'} %>
+    <%= link_to "Edit", edit_photo_path(element) %>
+    <%= link_to "Delete", photo_path(element), data: { "turbo-method": :delete , turbo_confirm: 'Are you sure?'} %>
   </p>
 
 <%end%>
