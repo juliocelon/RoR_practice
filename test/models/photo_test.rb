@@ -3,10 +3,19 @@
 # Table name: photos
 #
 #  id         :integer          not null, primary key
-#  title      :string
 #  image_url  :string
+#  title      :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  todo_id    :integer          not null
+#
+# Indexes
+#
+#  index_photos_on_todo_id  (todo_id)
+#
+# Foreign Keys
+#
+#  todo_id  (todo_id => todos.id)
 #
 require "test_helper"
 

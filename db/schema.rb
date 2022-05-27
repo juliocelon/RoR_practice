@@ -10,10 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_17_173843) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_26_230951) do
   create_table "photos", force: :cascade do |t|
     t.string "title"
     t.string "image_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "todo_id", null: false
+    t.index ["todo_id"], name: "index_photos_on_todo_id"
+  end
+
+  create_table "photos_tags", id: false, force: :cascade do |t|
+    t.integer "photo_id", null: false
+    t.integer "tag_id", null: false
+    t.index ["photo_id", "tag_id"], name: "index_photos_tags_on_photo_id_and_tag_id"
+    t.index ["tag_id", "photo_id"], name: "index_photos_tags_on_tag_id_and_photo_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "title"
+    t.string "color"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -35,4 +51,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_17_173843) do
     t.string "surname"
   end
 
+  add_foreign_key "photos", "todos"
 end

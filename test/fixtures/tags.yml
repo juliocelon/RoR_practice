@@ -1,27 +1,18 @@
 # == Schema Information
 #
-# Table name: photos
+# Table name: tags
 #
 #  id         :integer          not null, primary key
-#  image_url  :string
+#  color      :string
 #  title      :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  todo_id    :integer          not null
-#
-# Indexes
-#
-#  index_photos_on_todo_id  (todo_id)
-#
-# Foreign Keys
-#
-#  todo_id  (todo_id => todos.id)
 #
 
 one:
   title: MyString
-  image_url: MyString
+  color: MyString
 
 two:
   title: MyString
-  image_url: MyString
+  color: MyString
